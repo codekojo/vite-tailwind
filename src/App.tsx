@@ -3,31 +3,37 @@ const menu = [
     name: "Focaccia",
     description: "Bread with italian olive oil and rosemary",
     quantity: 6,
+    img: "https://foodbyjonister.com/wp-content/uploads/2020/07/Focaccia9-scaled.jpg",
   },
   {
     name: "Pizza Margherita",
-    description: "Bread with italian olive oil and rosemary",
-    quantity: 6,
+    description: "Tomato and mozarella",
+    quantity: 10,
+    img: "https://images.prismic.io/eataly-us/ed3fcec7-7994-426d-a5e4-a24be5a95afd_pizza-recipe-main.jpg?auto=compress,format",
   },
   {
     name: "Pizza Spinaci",
-    description: "Bread with italian olive oil and rosemary",
-    quantity: 6,
+    description: "Tomato, mozarella, spinach, and ricotta cheese",
+    quantity: 12,
+    img: "https://www.pizzajiznimesto.cz/img/product/500x500/pizza-spinaci_1.jpg",
   },
   {
     name: "Pizza Funghi",
-    description: "Bread with italian olive oil and rosemary",
-    quantity: 6,
+    description: "Tomato, mozarella, mushrooms and onion",
+    quantity: 12,
+    img: "https://www.edeka.de/media/01-rezeptbilder/rezeptbilder-i-p/rez-edeka-pizza-funghi-rezept-i-p-1-1.jpg",
   },
   {
     name: "Pizza Salamino",
-    description: "Bread with italian olive oil and rosemary",
-    quantity: 6,
+    description: "Tomato, mozarella, and pepperoni",
+    quantity: 0,
+    img: "https://live.staticflickr.com/2074/2217142211_cfcc398bf3_z.jpg",
   },
   {
-    name: "Pizza Prosciuto",
-    description: "Bread with italian olive oil and rosemary",
-    quantity: 6,
+    name: "Pizza Prosciutto",
+    description: "Tomato, mozarella, ham, aragula and burrata cheese",
+    quantity: 18,
+    img: "https://www.thespruceeats.com/thmb/MD-dSsFP6k5XBSk9XcdOIfnF4K0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/prosciutto-pizza-4844358-hero-04-c0a6f73057ce4fed88982b75a5c2c8e1.jpg",
   },
 ];
 
@@ -53,20 +59,13 @@ const App = () => {
             {menu.map((item) => {
               return (
                 <Card
-                  imageSrc=""
+                  imageSrc={item.img}
                   name={item.name}
                   description={item.description}
                   quantity={item.quantity}
                 />
               );
             })}
-
-            {/* <Card imageSrc="" name="" description="" quantity="" />
-            <Card imageSrc="" name="" description="" quantity="" />
-            <Card imageSrc="" name="" description="" quantity="" />
-            <Card imageSrc="" name="" description="" quantity="" />
-            <Card imageSrc="" name="" description="" quantity="" />
-            <Card imageSrc="" name="" description="" quantity="" /> */}
           </section>
 
           <footer className="text-center w-4/5 mx-auto">
@@ -85,13 +84,20 @@ const App = () => {
 };
 
 function Card({ imageSrc, name, description, quantity }) {
+  const emptyCart = quantity === 0;
+
   return (
-    <div className="flex space-x-4 justify-center">
+    <div
+      className={`flex space-x-4 cursor-pointer ${
+        emptyCart && `grayscale text-stone-400`
+      }`}
+    >
       <img
-        src="https://foodbyjonister.com/wp-content/uploads/2020/07/Focaccia9-scaled.jpg"
+        src={imageSrc}
         alt="focassia"
         loading="lazy"
-        className="w-24 h-28 rounded-md object-cover"
+        className={`w-24 h-28 rounded-md object-cover  
+        `}
       />
       <div className="flex flex-col py-1 ">
         <h2 className="font-semibold mb-1">{name}</h2>
